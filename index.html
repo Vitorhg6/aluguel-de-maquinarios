@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexum — Aluguel de Maquinários para Construção</title>
+  <meta name="description" content="Alugue os melhores equipamentos para construção civil com facilidade e segurança. Escavadeiras, guindastes, betoneiras e muito mais." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+</head>
+<body>
+
+  <!-- LOADING -->
+  <div id="loading">
+    <div class="loading-logo">NEXUM</div>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7l-8 4-8-4v-7l8-4.32z"/></svg>
+          </div>
+          NEXUM
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="equipamentos.html">Equipamentos</a>
+          <a href="painel.html">Meu Painel</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Preenchido pelo JS -->
+        </div>
+
+        <button class="nav-hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="nav-mobile">
+      <a href="index.html">Home</a>
+      <a href="equipamentos.html">Equipamentos</a>
+      <a href="painel.html">Meu Painel</a>
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastrar</a>
+    </nav>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Plataforma #1 em Locação
+          </div>
+
+          <h1 class="hero-title">
+            ALUGUE
+            <span class="accent">MÁQUINAS</span>
+            COM PODER
+          </h1>
+
+          <p class="hero-sub">
+            Equipamentos pesados de construção civil disponíveis sob demanda.
+            Simples, rápido e sem burocracia. Sua obra merece o melhor.
+          </p>
+
+          <div class="hero-actions">
+            <a href="equipamentos.html" class="btn btn-primary btn-lg">
+              Ver Equipamentos →
+            </a>
+            <a href="cadastro.html" class="btn btn-outline btn-lg">
+              Criar Conta Grátis
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="num"><span data-count="120" data-suffix="+">0+</span></div>
+              <div class="label">Equipamentos</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num"><span data-count="2400" data-suffix="+">0+</span></div>
+              <div class="label">Clientes Ativos</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num"><span data-count="98" data-suffix="%">0%</span></div>
+              <div class="label">Satisfação</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card visual -->
+        <div class="hero-visual">
+          <div class="hero-machine-card">
+            <div class="card-img">🏗️</div>
+            <div class="card-name">GUINDASTE TELESCÓPICO</div>
+            <div class="card-price">R$ 3.500 <span style="font-size:.75rem;color:var(--gray-400);font-weight:400">/ dia</span></div>
+            <span class="card-badge">✓ Disponível Agora</span>
+          </div>
+
+          <div class="hero-float hero-float-1">
+            <div class="float-label">Entrega em até</div>
+            <div class="float-val orange">24 horas</div>
+          </div>
+
+          <div class="hero-float hero-float-2">
+            <div class="float-label">Equipamentos disponíveis</div>
+            <div class="float-val">120+</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MARQUEE ══════════════ -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">ESCAVADEIRAS</span>
+      <span class="marquee-item">GUINDASTES</span>
+      <span class="marquee-item">BETONEIRAS</span>
+      <span class="marquee-item">COMPACTADORES</span>
+      <span class="marquee-item">ANDAIMES</span>
+      <span class="marquee-item">PERFURATRIZ</span>
+      <span class="marquee-item">MINICARREGADEIRAS</span>
+      <span class="marquee-item">ROLO COMPACTADOR</span>
+      <!-- Duplicado para loop contínuo -->
+      <span class="marquee-item">ESCAVADEIRAS</span>
+      <span class="marquee-item">GUINDASTES</span>
+      <span class="marquee-item">BETONEIRAS</span>
+      <span class="marquee-item">COMPACTADORES</span>
+      <span class="marquee-item">ANDAIMES</span>
+      <span class="marquee-item">PERFURATRIZ</span>
+      <span class="marquee-item">MINICARREGADEIRAS</span>
+      <span class="marquee-item">ROLO COMPACTADOR</span>
+    </div>
+  </div>
+
+  <!-- ══════════════ DESTAQUES ══════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Equipamentos em Destaque</span>
+        <h2 class="section-title">MÁQUINAS PRONTAS <br>PARA SUA OBRA</h2>
+      </div>
+
+      <div class="equip-grid" id="destaque-grid">
+        <!-- Preenchido pelo JS -->
+      </div>
+
+      <div style="text-align:center; margin-top:48px;" class="reveal">
+        <a href="equipamentos.html" class="btn btn-outline btn-lg">
+          Ver Todos os Equipamentos →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section" style="background:var(--gray-900); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05);">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="section-label">Por que Nexum?</span>
+        <h2 class="section-title">VANTAGENS QUE <br>FAZEM A DIFERENÇA</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">ENTREGA RÁPIDA</h3>
+          <p class="feature-desc">Equipamentos entregues em até 24 horas após a confirmação do pedido. Sua obra não para.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">🔧</div>
+          <h3 class="feature-title">MANUTENÇÃO GARANTIDA</h3>
+          <p class="feature-desc">Toda frota revisada e certificada. Suporte técnico 24/7 durante o período de locação.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">💼</div>
+          <h3 class="feature-title">PARA EMPRESAS</h3>
+          <p class="feature-desc">Conta empresarial com CNPJ, contratos digitais, notas fiscais e condições especiais para grandes projetos.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">SEGURO INCLUSO</h3>
+          <p class="feature-desc">Todos os equipamentos possuem cobertura de seguro durante o período de aluguel. Sem surpresas.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">GESTÃO ONLINE</h3>
+          <p class="feature-desc">Solicite, acompanhe e gerencie todos os aluguéis diretamente pelo painel digital, de qualquer dispositivo.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">💰</div>
+          <h3 class="feature-title">PREÇO JUSTO</h3>
+          <p class="feature-desc">Sem taxas ocultas. Preço por dia transparente, com desconto para períodos longos e clientes recorrentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CTA ══════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section reveal">
+        <h2 class="cta-title">PRONTO PARA COMEÇAR?</h2>
+        <p class="cta-sub">Cadastre-se gratuitamente e acesse nosso catálogo completo de equipamentos.</p>
+        <div class="cta-actions">
+          <a href="cadastro.html" class="btn btn-primary btn-lg">Criar Conta Grátis</a>
+          <a href="equipamentos.html" class="btn btn-ghost btn-lg">Ver Equipamentos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-icon" style="width:28px;height:28px;background:var(--orange);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white;"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7l-8 4-8-4v-7l8-4.32z"/></svg>
+            </div>
+            NEXUM
+          </div>
+          <p class="brand-desc">A plataforma mais completa para aluguel de maquinários pesados de construção civil. Confiança e agilidade em cada obra.</p>
+          <a href="equipamentos.html" class="btn btn-primary btn-sm">Explorar Equipamentos</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="equipamentos.html">Equipamentos</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="painel.html">Meu Painel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Categorias</h4>
+          <ul>
+            <li><a href="equipamentos.html?cat=escavadeira">Escavadeiras</a></li>
+            <li><a href="equipamentos.html?cat=guindaste">Guindastes</a></li>
+            <li><a href="equipamentos.html?cat=betoneira">Betoneiras</a></li>
+            <li><a href="equipamentos.html?cat=compactador">Compactadores</a></li>
+            <li><a href="equipamentos.html?cat=andaime">Andaimes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul class="footer-contact">
+            <li><span>📧</span> contato@nexum.com.br</li>
+            <li><span>📞</span> (65) 3000-0000</li>
+            <li><span>📍</span> Cuiabá, MT — Brasil</li>
+            <li><span>⏰</span> Seg–Sex, 7h–18h</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2025 <strong>NEXUM</strong>. Todos os direitos reservados.
+        </p>
+        <p class="footer-copy">
+          Desenvolvido com ⚙️ para a construção civil brasileira
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

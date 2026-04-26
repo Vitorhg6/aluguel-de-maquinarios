@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Nexum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOADING -->
+  <div id="loading">
+    <div class="loading-logo">NEXUM</div>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  </div>
+
+  <!-- NAVBAR (simplificado) -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7l-8 4-8-4v-7l8-4.32z"/></svg>
+          </div>
+          NEXUM
+        </a>
+        <div class="nav-actions">
+          <a href="index.html" class="btn btn-ghost btn-sm">← Voltar</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- LOGIN -->
+  <div class="form-page">
+    <div class="form-box">
+
+      <div class="form-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7l-8 4-8-4v-7l8-4.32z"/></svg>
+        </div>
+        NEXUM
+      </div>
+
+      <h1 class="form-title">ENTRAR</h1>
+      <p class="form-sub">Acesse sua conta para gerenciar aluguéis.</p>
+
+      <!-- Tabs -->
+      <div class="form-tabs">
+        <button class="form-tab active" data-type="cliente">👤 Cliente</button>
+        <button class="form-tab" data-type="empresa">🏢 Empresa</button>
+      </div>
+
+      <!-- Alert -->
+      <div id="login-alert" class="alert"></div>
+
+      <!-- Form -->
+      <form id="login-form" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="login-email">E-mail</label>
+          <input
+            type="email"
+            id="login-email"
+            class="form-input"
+            placeholder="seu@email.com"
+            autocomplete="email"
+          />
+          <p class="form-error" id="login-email-err"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-senha">Senha</label>
+          <input
+            type="password"
+            id="login-senha"
+            class="form-input"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+          <p class="form-error" id="login-senha-err"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:8px;">
+          Entrar na Conta →
+        </button>
+
+      </form>
+
+      <p class="form-footer-text">
+        Não tem conta? <a href="cadastro.html">Cadastre-se gratuitamente</a>
+      </p>
+
+      <!-- Dica para demo -->
+      <div style="
+        margin-top: 24px;
+        padding: 14px;
+        background: rgba(242,101,34,0.06);
+        border: 1px solid rgba(242,101,34,0.15);
+        border-radius: 8px;
+        font-size: 0.78rem;
+        color: var(--gray-400);
+        line-height: 1.6;
+      ">
+        💡 <strong style="color:var(--orange)">Demo:</strong> Crie uma conta em <a href="cadastro.html" style="color:var(--orange)">Cadastro</a> para testar o login.
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
