@@ -589,7 +589,7 @@ ul { list-style: none; }
 }
 
 .equip-card-name {
-  font-family: var(--ff-display);
+  font-family: var(comic);
   font-size: 1.45rem;
   color: var(--white);
   line-height: 1.1;
