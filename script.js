@@ -598,7 +598,7 @@ function confirmarAluguel(id) {
     id: Date.now(),
     equipamentoId: id,
     equipamentoNome: eq.nome,
-    equipamentoEmoji: eq.emoji,
+    equipamentoImagem: eq.src,
     userEmail: user.email,
     inicio,
     fim,
@@ -871,7 +871,7 @@ function initPainel() {
         const card = document.createElement('div');
         card.className = 'rental-card';
         card.innerHTML = `
-          <div class="rental-icon">${a.equipamentoEmoji}</div>
+          <div class="rental-icon"><img src=${a.equipamentoImagem}></div>
           <div class="rental-info">
             <p class="rental-name">${a.equipamentoNome}</p>
             <p class="rental-dates">📅 ${formatDate(a.inicio)} → ${formatDate(a.fim)} (${a.dias} dia${a.dias > 1 ? 's' : ''})</p>
