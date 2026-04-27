@@ -240,7 +240,7 @@
             const card = document.createElement('div');
             card.className = 'rental-card';
             card.innerHTML = `
-              <div class="rental-icon">${a.equipamentoEmoji}</div>
+              <div><img src="${a.equipamentoImagem}"></div>
               <div class="rental-info">
                 <p class="rental-name">${a.equipamentoNome}</p>
                 <p class="rental-dates">📅 ${d} → ${df} (${a.dias} dia${a.dias > 1 ? 's' : ''})</p>
@@ -257,7 +257,7 @@
     });
 
     // Helper para acesso no inline script
-    function storageGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } }
+    function storageGet(J) { try { return JSON.parse(localStorage.getItem(J)); } catch { return null; } }
   </script>
 </body>
 </html>
