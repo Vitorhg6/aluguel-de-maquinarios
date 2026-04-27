@@ -15,7 +15,7 @@ const EQUIPAMENTOS = [
     desc: 'Escavadeira hidráulica de grande porte, ideal para obras de terraplanagem e escavações profundas. Motor turbinado com 220 CV.',
     preco: 1800,
     status: 'disponivel',
-    emoji: '🚜',
+    src: 'images/escavadeira_hidraulica.jpeg',
     specs: { peso: '22 ton', alcance: '9,8 m', potencia: '220 CV', cap_cacamba: '1,2 m³' },
     tags: ['terraplanagem', 'escavação', 'fundação'],
     destaque: true
@@ -27,7 +27,7 @@ const EQUIPAMENTOS = [
     desc: 'Betoneira elétrica de alta capacidade com tambor de 400 litros. Perfeita para obras de médio e grande porte.',
     preco: 280,
     status: 'disponivel',
-    emoji: '⚙️',
+    src: 'images/betoneira_eletrica_400.png',
     specs: { capacidade: '400 L', tensao: '220V/380V', motor: '2 CV', peso: '180 kg' },
     tags: ['concreto', 'alvenaria'],
     destaque: false
@@ -39,7 +39,7 @@ const EQUIPAMENTOS = [
     desc: 'Compactador vibratório para solo e base de pavimentação. Excelente desempenho em terrenos irregulares.',
     preco: 320,
     status: 'disponivel',
-    emoji: '🔨',
+    src: 'images/compactador_solo.png',
     specs: { forca: '25 kN', frequencia: '75 Hz', motor: 'Honda GX160', peso: '92 kg' },
     tags: ['pavimentação', 'base'],
     destaque: false
@@ -51,7 +51,7 @@ const EQUIPAMENTOS = [
     desc: 'Guindaste telescópico com lança de 40 metros e capacidade de carga de 25 toneladas. Ideal para construções verticais.',
     preco: 3500,
     status: 'disponivel',
-    emoji: '🏗️',
+    src: 'images/guindaste_telescopico.png',
     specs: { cap_carga: '25 ton', alcance: '40 m', altura_max: '38 m', peso: '65 ton' },
     tags: ['içamento', 'vertical', 'estrutura'],
     destaque: true
@@ -63,7 +63,7 @@ const EQUIPAMENTOS = [
     desc: 'Retroescavadeira versátil com concha frontal e caçamba traseira. Ideal para pequenas obras e serviços urbanos.',
     preco: 950,
     status: 'indisponivel',
-    emoji: '🚧',
+    src: 'images/retroescavadeira.png',
     specs: { potencia: '95 CV', prof_max: '5,5 m', cap_concha: '1,1 m³', peso: '8 ton' },
     tags: ['urbano', 'escavação', 'movimentação'],
     destaque: false
@@ -75,7 +75,7 @@ const EQUIPAMENTOS = [
     desc: 'Rolo compactador tandem de duplos tambores vibratórios. Perfeito para compactação de asfalto e bases granulares.',
     preco: 1200,
     status: 'disponivel',
-    emoji: '🛞',
+    src: 'images/Rolo_compactador.png',
     specs: { largura: '1,2 m', peso_op: '12 ton', amplitude: '0,5 mm', motor: '116 CV' },
     tags: ['asfalto', 'pavimentação'],
     destaque: false
@@ -87,7 +87,7 @@ const EQUIPAMENTOS = [
     desc: 'Sistema de andaime suspenso motorizado para fachadas e trabalhos em altura. Capacidade para 2 operadores.',
     preco: 420,
     status: 'disponivel',
-    emoji: '🏢',
+    src: 'images/andaime-suspenso.jpg',
     specs: { cap_carga: '300 kg', comprimento: '3,6 m', velocidade: '6 m/min', altura_max: '150 m' },
     tags: ['fachada', 'altura', 'reforma'],
     destaque: false
@@ -99,7 +99,7 @@ const EQUIPAMENTOS = [
     desc: 'Perfuratriz rotativa hidráulica para fundações com trado contínuo. Alta produtividade em solo argiloso e arenoso.',
     preco: 2400,
     status: 'disponivel',
-    emoji: '🔩',
+    src: 'images/perfuratriz_rotativa.png',
     specs: { diametro: '300-800 mm', profundidade: '20 m', torque: '50 kNm', peso: '18 ton' },
     tags: ['fundação', 'estaca', 'trado'],
     destaque: true
@@ -111,7 +111,7 @@ const EQUIPAMENTOS = [
     desc: 'Minicarregadeira compacta e ágil, ideal para espaços restritos. Diversos implementos disponíveis.',
     preco: 680,
     status: 'disponivel',
-    emoji: '🚛',
+    src: 'images/minicarregadeira_skid_steer.png',
     specs: { cap_carga: '760 kg', potencia: '74 CV', altura_desc: '2,8 m', peso: '3,4 ton' },
     tags: ['compacto', 'versátil', 'obra'],
     destaque: false
@@ -279,7 +279,7 @@ function criarCardEquipamento(eq, delay = 0) {
   card.className = 'equip-card';
   card.style.animationDelay = `${delay}ms`;
   card.innerHTML = `
-    <div class="equip-card-img">${eq.emoji}</div>
+    <div class="equip-card-img"><img src=${eq.src}></div>
     <div class="equip-card-body">
       <span class="equip-card-category">${eq.categoria}</span>
       <h3 class="equip-card-name">${eq.nome}</h3>
@@ -437,7 +437,7 @@ function initDetalhes() {
 
     <div class="detail-grid">
       <div>
-        <div class="detail-img">${eq.emoji}</div>
+        <img src="${eq.src}">
       </div>
       <div class="detail-info">
         <p class="detail-category">${eq.categoria}</p>
