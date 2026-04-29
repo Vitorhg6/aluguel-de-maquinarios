@@ -948,3 +948,82 @@ document.addEventListener('DOMContentLoaded', () => {
   // Animação de entrada de página
   document.body.classList.add('page-enter');
 });
+// seu código atual...
+
+// 🔹 CARREGAR DADOS NO PERFIL
+if (window.location.pathname.includes("perfil.html")) {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    alert("Você precisa estar logado!");
+    window.location.href = "login.html";
+  }
+
+  document.getElementById("nome").value = user.nome || "";
+  document.getElementById("email").value = user.email || "";
+}
+
+// 🔹 SALVAR PERFIL
+const form = document.getElementById("perfilForm");
+
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // aqui você coloca lógica de submit
+    console.log("Form enviado");
+  });
+}
+
+// 🔹 CARREGAR DADOS DO PERFIL (fora do submit)
+const nomeInput = document.getElementById("nome");
+const emailInput = document.getElementById("email");
+const senhaInput = document.getElementById("senha");
+const perfilForm = document.getElementById("perfilForm");
+
+if (nomeInput && emailInput) {
+  const user = getUsuarioAtual();
+
+  if (!user) {
+    showToast('Faça login primeiro.', 'error');
+    setTimeout(() => window.location.href = 'login.html', 800);
+  } else {
+    nomeInput.value = user.nome || user.nomeEmpresa || "";
+    emailInput.value = user.email || "";
+  }
+}
+
+// 🔹 SALVAR PERFIL
+if (perfilForm) {
+  perfilForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const user = getUsuarioAtual();
+    if (!user) return;
+
+    const nome = nomeInput.value;
+    const email = emailInput.value;
+    const senha = senhaInput.value;
+
+    // Atualiza usuário atual
+    user.nome = nome;
+    user.email = email;
+
+    if (senha && senha.trim() !== "") {
+      user.senha = senha;
+    }
+
+    // Atualiza lista de usuários
+    let usuarios = getUsuarios();
+    usuarios = usuarios.map(u => u.id === user.id ? user : u);
+
+    setUsuarios(usuarios);
+    setUsuarioAtual(user);
+
+    showToast('Perfil atualizado com sucesso!', 'success');
+
+    setTimeout(() => {
+      window.location.href = "painel.html";
+    }, 800);
+  });
+}
