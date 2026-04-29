@@ -175,14 +175,83 @@
                 </div>
               </div>
 
-              <div style="margin-top:8px;">
-                <button
-                  onclick="showToast('Edição de perfil em breve!', 'info')"
-                  class="btn btn-outline btn-sm"
-                >
-                  ✏️ Editar Perfil (em breve)
-                </button>
-              </div>
+           <!-- MODO VISUALIZAÇÃO -->
+<div class="view-grid" id="viewMode">
+  <div class="info-field">
+    <p class="info-label">Nome</p>
+    <p class="info-value" id="vNome">-</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">E-mail</p>
+    <p class="info-value" id="vEmail">-</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">Telefone</p>
+    <p class="info-value" id="vTelefone">—</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">Cidade / Estado</p>
+    <p class="info-value" id="vCidade">—</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">Tipo de Conta</p>
+    <p class="info-value" id="vTipo">Cliente</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">Membro Desde</p>
+    <p class="info-value" id="vMembro">—</p>
+  </div>
+</div>
+
+<!-- FORMULÁRIO DE EDIÇÃO -->
+<div class="edit-form" id="editForm">
+  <div class="form-row">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" id="fNome" placeholder="Seu nome" />
+    </div>
+    <div class="form-group">
+      <label>Sobrenome</label>
+      <input type="text" id="fSobrenome" placeholder="Seu sobrenome" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>E-mail <span style="font-size:.7rem;color:#e8601c;font-style:italic">(não editável)</span></label>
+      <input type="email" id="fEmail" disabled />
+    </div>
+    <div class="form-group">
+      <label>Telefone</label>
+      <input type="tel" id="fTelefone" placeholder="(65) 90000-0000" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Cidade</label>
+      <input type="text" id="fCidade" />
+    </div>
+    <div class="form-group">
+      <label>Estado</label>
+      <select id="fEstado">
+        <option value="">Selecione...</option>
+        <option>AC</option><option>AL</option><option>AM</option><option>AP</option>
+        <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+        <option>GO</option><option>MA</option><option>MG</option><option>MT</option>
+        <option>MS</option><option>PA</option><option>PB</option><option>PE</option>
+        <option>PI</option><option>PR</option><option>RJ</option><option>RN</option>
+        <option>RO</option><option>RR</option><option>RS</option><option>SC</option>
+        <option>SE</option><option>SP</option><option>TO</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button id="btnSave">💾 Salvar</button>
+    <button id="btnCancel">Cancelar</button>
+  </div>
+</div>
+
+<button id="btnEdit">✏️ EDITAR PERFIL</button>
+<div class="toast" id="toast">✓ Perfil salvo!</div>
 
             </div>
           </div>
