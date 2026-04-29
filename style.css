@@ -1108,7 +1108,9 @@ ul { list-style: none; }
 
 .stat-card .stat-num span { color: var(--orange); }
 .stat-card .stat-label { font-size: 0.75rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px; }
-
+.section .perfil-form{
+  font-size :3.3rem
+}
 /* ---------- FEATURES SECTION ---------- */
 .features-grid {
   display: grid;

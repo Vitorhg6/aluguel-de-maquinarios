@@ -38,22 +38,25 @@
         <h2 class="section-title">MEU PERFIL</h2>
       </div>
 
-      <div class="perfil-box">
+      <form class="perfil-box" id="perfil-form">
 
-        <label>Nome</label>
+        <label for="nome">Nome</label>
         <input id="nome" type="text" placeholder="Seu nome">
 
-        <label>Email</label>
+        <label for="email">Email</label>
         <input id="email" type="email" placeholder="Seu email">
 
-        <label>Senha</label>
+        <label for="telefone">Telefone</label>
+        <input id="telefone" type="tel" placeholder="Número de telefone">
+
+        <label for="senha">Senha</label>
         <input id="senha" type="password" placeholder="Sua senha">
 
-        <button class="btn btn-primary" id="perfilForm">
+        <button type="submit" class="btn btn-primary" id="btn-salvar">
           Salvar alterações
         </button>
 
-      </div>
+      </form>
 
     </div>
   </section>
