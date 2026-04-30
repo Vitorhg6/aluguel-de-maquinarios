@@ -1,42 +1,321 @@
-/**
- * @jest-environment jsdom
- */
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel — Nexum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-const fs = require('fs');
-const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './painel.html'), 'utf8');
+  <!-- LOADING -->
+  <div id="loading">
+    <div class="loading-logo">NEXUM</div>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  </div>
 
-describe('Painel de Perfil', () => {
-  beforeEach(() => {
-    document.documentElement.innerHTML = html.toString();
-  });
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7l-8 4-8-4v-7l8-4.32z"/></svg>
+          </div>
+          NEXUM
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="equipamentos.html">Equipamentos</a>
+          <a href="painel.html" class="active">Meu Painel</a>
+        </div>
+        <div class="nav-actions"></div>
+        <button class="nav-hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html">Home</a>
+      <a href="equipamentos.html">Equipamentos</a>
+      <a href="painel.html">Meu Painel</a>
+    </nav>
+  </nav>
 
-  test('deve renderizar o título da seção corretamente', () => {
-    const title = document.querySelector('.section-title');
-    expect(title).not.toBeNull();
-    expect(title.textContent).toBe('MEU PERFIL');
-  });
+  <!-- PAINEL -->
+  <section class="section dashboard-page">
+    <div class="container">
 
-  test('deve conter todos os campos de entrada necessários', () => {
-    expect(document.getElementById('nome')).not.toBeNull();
-    expect(document.getElementById('email')).not.toBeNull();
-    expect(document.getElementById('telefone')).not.toBeNull();
-    expect(document.getElementById('senha')).not.toBeNull();
-  });
+      <!-- Cabeçalho -->
+      <div style="margin-bottom:40px;">
+        <span class="section-label">Área do Usuário</span>
+        <h1 class="section-title" style="font-size:2.8rem; margin-top:8px;">MEU PAINEL</h1>
+      </div>
 
-  test('o campo de e-mail deve ser do tipo email para validação nativa', () => {
-    const emailInput = document.getElementById('email');
-    expect(emailInput.getAttribute('type')).toBe('email');
-  });
+      <div class="dashboard-grid">
 
-  test('deve ter um botão de submissão dentro do formulário', () => {
-    const btn = document.getElementById('btn-salvar');
-    expect(btn).not.toBeNull();
-    expect(btn.getAttribute('type')).toBe('submit');
-  });
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+          <div class="dash-avatar" id="dash-avatar">?</div>
+          <p class="dash-name" id="dash-nome">Carregando...</p>
+          <p class="dash-email" id="dash-email">—</p>
+          <span class="dash-type" id="dash-type">—</span>
 
-  test('as labels devem estar associadas corretamente aos inputs', () => {
-    const labelNome = document.querySelector('label[for="nome"]');
-    expect(labelNome).not.toBeNull();
-  });
-});
+          <nav class="dash-nav">
+            <div class="dash-nav-item active" data-section="visao-geral">
+              📊 Visão Geral
+            </div>
+            <div class="dash-nav-item" data-section="alugueis">
+              📦 Meus Aluguéis
+            </div>
+            <div class="dash-nav-item" data-section="perfil">
+              👤 Meu Perfil
+            </div>
+            <div class="dash-nav-item" data-section="equipamentos-nav" onclick="window.location.href='equipamentos.html'">
+              🔍 Ver Equipamentos
+            </div>
+          </nav>
+
+          <div style="margin-top:28px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.06);">
+            <button onclick="logout()" class="btn btn-ghost btn-sm btn-full" style="justify-content:center;">
+              Sair da Conta
+            </button>
+          </div>
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="dashboard-main">
+
+          <!-- ── VISÃO GERAL ── -->
+          <div class="dash-section active" id="dash-visao-geral">
+            <h2 class="dash-section-title">VISÃO GERAL</h2>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-num"><span id="dash-total-alugueis">0</span></div>
+                <div class="stat-label">Total de Aluguéis</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num"><span id="dash-ativos">0</span></div>
+                <div class="stat-label">Ativos Agora</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num" style="font-size:1.4rem;" id="dash-total-gasto">R$ 0</div>
+                <div class="stat-label">Total Investido</div>
+              </div>
+            </div>
+
+            <!-- Preview aluguéis recentes -->
+            <h3 style="font-size:1.1rem;color:var(--white);font-weight:600;margin-bottom:16px;">Aluguéis Recentes</h3>
+            <div id="dash-alugueis-lista">
+              <!-- Preenchido pelo JS -->
+            </div>
+
+            <div style="margin-top:28px;">
+              <a href="equipamentos.html" class="btn btn-primary">
+                ➕ Novo Aluguel
+              </a>
+            </div>
+          </div>
+
+          <!-- ── ALUGUÉIS ── -->
+          <div class="dash-section" id="dash-alugueis">
+            <h2 class="dash-section-title">MEUS ALUGUÉIS</h2>
+            <div id="dash-alugueis-lista-full">
+              <!-- Cópia da lista (renderizada pelo JS reutilizando o mesmo array) -->
+              <p style="color:var(--gray-400); font-size:.88rem;">Carregando seus aluguéis...</p>
+            </div>
+            <div style="margin-top:28px;">
+              <a href="equipamentos.html" class="btn btn-outline">Ver Equipamentos Disponíveis →</a>
+            </div>
+          </div>
+
+          <!-- ── PERFIL ── -->
+          <div class="dash-section" id="dash-perfil">
+            <h2 class="dash-section-title">MEU PERFIL</h2>
+
+            <div style="
+              background: var(--gray-800);
+              border: 1px solid rgba(255,255,255,0.07);
+              border-radius: var(--radius-lg);
+              padding: 32px;
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+            ">
+
+              <div style="display:flex; align-items:center; gap:20px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.06);">
+                <div class="dash-avatar" style="width:80px;height:80px;font-size:2rem;" id="dash-avatar-perfil">?</div>
+                <div>
+                  <p style="font-size:1.2rem;font-weight:700;color:var(--white);" id="dash-nome-perfil-header">—</p>
+                  <p style="font-size:.85rem;color:var(--gray-400);margin-top:4px;" id="dash-email-perfil">—</p>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div class="spec-item">
+                  <div class="spec-label">Nome</div>
+                  <div class="spec-val" id="dash-nome-info">—</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-label">E-mail</div>
+                  <div class="spec-val" id="dash-email-info" style="font-size:.85rem;">—</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-label">Tipo de Conta</div>
+                  <div class="spec-val" id="dash-tipo-info">—</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-label">Membro Desde</div>
+                  <div class="spec-val" id="dash-membro-desde">—</div>
+                </div>
+                <div class="spec-item" id="dash-cnpj-row" style="display:none;">
+                  <div class="spec-label">CNPJ</div>
+                  <div class="spec-val" id="dash-cnpj-info">—</div>
+                </div>
+              </div>
+
+              <!-- MODO VISUALIZAÇÃO -->
+<div class="view-grid" id="viewMode">
+  <div class="info-field">
+    <p class="info-label">Nome</p>
+    <p class="info-value" id="vNome">-</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">E-mail</p>
+    <p class="info-value" id="vEmail">-</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">Telefone</p>
+    <p class="info-value" id="vTelefone">—</p>
+  </div>
+  <div class="info-field">
+    <p class="info-label">Cidade / Estado</p>
+    <p class="info-value" id="vCidade">—</p>
+  </div>
+</div>
+
+<!-- FORMULÁRIO DE EDIÇÃO (começa escondido) -->
+<div class="edit-form" id="editForm">
+  <div class="form-row">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" id="fNome" placeholder="Seu nome" />
+    </div>
+    <div class="form-group">
+      <label>Sobrenome</label>
+      <input type="text" id="fSobrenome" placeholder="Seu sobrenome" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="email" id="fEmail" disabled />
+    </div>
+    <div class="form-group">
+      <label>Telefone</label>
+      <input type="tel" id="fTelefone" placeholder="(65) 90000-0000" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Cidade</label>
+      <input type="text" id="fCidade" />
+    </div>
+    <div class="form-group">
+      <label>Estado</label>
+      <select id="fEstado">
+        <option value="">Selecione...</option>
+        <option>MT</option><option>SP</option><option>RJ</option>
+        <!-- adicione os demais estados -->
+      </select>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button id="btnSave">💾 Salvar</button>
+    <button id="btnCancel">Cancelar</button>
+  </div>
+</div>
+
+<button id="btnEdit">✏️ EDITAR PERFIL</button>
+
+<!-- Toast de confirmação -->
+<div class="toast" id="toast">✓ Perfil salvo!</div>
+
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.06); padding-top:28px;">
+        <p class="footer-copy">© 2026 <strong>NEXUM</strong>. Todos os direitos reservados.</p>
+        <p class="footer-copy">📧 contato@nexum.com.br</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Sincroniza a aba Aluguéis completa com os dados do painel
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const user = storageGet('nexum_usuario_atual');
+        if (!user) return;
+        const listaFull = document.getElementById('dash-alugueis-lista-full');
+        const alugueisLS = storageGet('nexum_alugueis') || [];
+        const meus = alugueisLS.filter(a => a.userEmail === user.email);
+
+        // Sincroniza avatar no perfil
+        const nome = user.nome || user.nomeEmpresa || 'U';
+        const avatarPerfil = document.getElementById('dash-avatar-perfil');
+        if (avatarPerfil) avatarPerfil.textContent = nome.charAt(0).toUpperCase();
+        const nomePerfil = document.getElementById('dash-nome-perfil-header');
+        if (nomePerfil) nomePerfil.textContent = nome;
+        const emailPerfil = document.getElementById('dash-email-perfil');
+        if (emailPerfil) emailPerfil.textContent = user.email;
+
+        if (!listaFull) return;
+        if (meus.length === 0) {
+          listaFull.innerHTML = `
+            <div class="empty-state">
+              <div class="icon">📦</div>
+              <p class="title">Nenhum aluguel ainda</p>
+              <p class="desc"><a href="equipamentos.html" style="color:var(--orange)">Explore nossos equipamentos</a></p>
+            </div>
+          `;
+        } else {
+          listaFull.innerHTML = '';
+          meus.forEach(a => {
+            const d = new Date(a.inicio).toLocaleDateString('pt-BR');
+            const df = new Date(a.fim).toLocaleDateString('pt-BR');
+            const card = document.createElement('div');
+            card.className = 'rental-card';
+            card.innerHTML = `
+              <div><img src="${a.equipamentoImagem}"></div>
+              <div class="rental-info">
+                <p class="rental-name">${a.equipamentoNome}</p>
+                <p class="rental-dates">📅 ${d} → ${df} (${a.dias} dia${a.dias > 1 ? 's' : ''})</p>
+              </div>
+              <div class="rental-status">
+                <p class="rental-price">${a.total.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</p>
+                <span class="status-badge status-available">Ativo</span>
+              </div>
+            `;
+            listaFull.appendChild(card);
+          });
+        }
+      }, 300);
+    });
+
+    // Helper para acesso no inline script
+    function storageGet(J) { try { return JSON.parse(localStorage.getItem(J)); } catch { return null; } }
+  </script>
+</body>
+</html>
