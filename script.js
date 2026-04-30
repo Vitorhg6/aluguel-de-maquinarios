@@ -18,7 +18,12 @@ const EQUIPAMENTOS = [
     src: 'images/escavadeira_hidraulica.jpeg',
     specs: { peso: '22 ton', alcance: '9,8 m', potencia: '220 CV', cap_cacamba: '1,2 m³' },
     tags: ['terraplanagem', 'escavação', 'fundação'],
-    destaque: true
+    destaque: true,
+    contato: {
+      whatsapp: '65999990001',
+      email: 'escavadeira@nexum.com',
+      endereco: 'Av. das Máquinas, 100 - Cuiabá, MT'
+    }
   },
   {
     id: 2,
@@ -30,7 +35,12 @@ const EQUIPAMENTOS = [
     src: 'images/betoneira_eletrica_400.png',
     specs: { capacidade: '400 L', tensao: '220V/380V', motor: '2 CV', peso: '180 kg' },
     tags: ['concreto', 'alvenaria'],
-    destaque: false
+    destaque: false,
+    contato: {
+      whatsapp: '65999990002',
+      email: 'betoneira@nexum.com',
+      endereco: 'Rua das Obras, 45 - Várzea Grande, MT'
+    }
   },
   {
     id: 3,
@@ -42,7 +52,12 @@ const EQUIPAMENTOS = [
     src: 'images/compactador_solo.png',
     specs: { forca: '25 kN', frequencia: '75 Hz', motor: 'Honda GX160', peso: '92 kg' },
     tags: ['pavimentação', 'base'],
-    destaque: false
+    destaque: false,
+    contato: {
+      whatsapp: '65999990003',
+      email: 'compactador@nexum.com',
+      endereco: 'Rod. BR-364, Km 5 - Cuiabá, MT'
+    }
   },
   {
     id: 4,
@@ -54,7 +69,12 @@ const EQUIPAMENTOS = [
     src: 'images/guindaste_telescopico.png',
     specs: { cap_carga: '25 ton', alcance: '40 m', altura_max: '38 m', peso: '65 ton' },
     tags: ['içamento', 'vertical', 'estrutura'],
-    destaque: true
+    destaque: true,
+    contato: {
+      whatsapp: '65999990004',
+      email: 'guindaste@nexum.com',
+      endereco: 'Av. CPA, 800 - Cuiabá, MT'
+    }
   },
   {
     id: 5,
@@ -66,7 +86,12 @@ const EQUIPAMENTOS = [
     src: 'images/retroescavadeira.png',
     specs: { potencia: '95 CV', prof_max: '5,5 m', cap_concha: '1,1 m³', peso: '8 ton' },
     tags: ['urbano', 'escavação', 'movimentação'],
-    destaque: false
+    destaque: false,
+    contato: {
+      whatsapp: '65999990005',
+      email: 'retro@nexum.com',
+      endereco: 'Rua dos Construtores, 22 - Rondonópolis, MT'
+    }
   },
   {
     id: 6,
@@ -78,7 +103,12 @@ const EQUIPAMENTOS = [
     src: 'images/Rolo_compactador.png',
     specs: { largura: '1,2 m', peso_op: '12 ton', amplitude: '0,5 mm', motor: '116 CV' },
     tags: ['asfalto', 'pavimentação'],
-    destaque: false
+    destaque: false,
+    contato: {
+      whatsapp: '65999990006',
+      email: 'rolo@nexum.com',
+      endereco: 'Av. Historiador Rubens de Mendonça, 1200 - Cuiabá, MT'
+    }
   },
   {
     id: 7,
@@ -90,7 +120,12 @@ const EQUIPAMENTOS = [
     src: 'images/andaime-suspenso.jpg',
     specs: { cap_carga: '300 kg', comprimento: '3,6 m', velocidade: '6 m/min', altura_max: '150 m' },
     tags: ['fachada', 'altura', 'reforma'],
-    destaque: false
+    destaque: false,
+    contato: {
+      whatsapp: '65999990007',
+      email: 'andaime@nexum.com',
+      endereco: 'Rua Filinto Müller, 300 - Cuiabá, MT'
+    }
   },
   {
     id: 8,
@@ -102,7 +137,12 @@ const EQUIPAMENTOS = [
     src: 'images/perfuratriz_rotativa.png',
     specs: { diametro: '300-800 mm', profundidade: '20 m', torque: '50 kNm', peso: '18 ton' },
     tags: ['fundação', 'estaca', 'trado'],
-    destaque: true
+    destaque: true,
+    contato: {
+      whatsapp: '65999990008',
+      email: 'perfuratriz@nexum.com',
+      endereco: 'Av. Tenente Coronel Duarte, 500 - Cuiabá, MT'
+    }
   },
   {
     id: 9,
@@ -114,7 +154,12 @@ const EQUIPAMENTOS = [
     src: 'images/minicarregadeira_skid_steer.png',
     specs: { cap_carga: '760 kg', potencia: '74 CV', altura_desc: '2,8 m', peso: '3,4 ton' },
     tags: ['compacto', 'versátil', 'obra'],
-    destaque: false
+    destaque: false,
+    contato: {
+      whatsapp: '65999990009',
+      email: 'mini@nexum.com',
+      endereco: 'Rua das Acácias, 77 - Sinop, MT'
+    }
   }
 ];
 
@@ -159,6 +204,13 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('pt-BR');
 }
 
+function formatarTelefone(num) {
+  const n = num.replace(/\D/g, '');
+  if (n.length === 11) return `(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`;
+  if (n.length === 10) return `(${n.slice(0,2)}) ${n.slice(2,6)}-${n.slice(6)}`;
+  return num;
+}
+
 /* ─── TOAST ─── */
 
 function showToast(msg, type = 'info', duration = 3500) {
@@ -187,12 +239,10 @@ function initNavbar() {
   const navbar = $('#navbar');
   if (!navbar) return;
 
-  // Scroll
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  // Hamburger
   const ham = $('.nav-hamburger');
   const mobileMenu = $('.nav-mobile');
 
@@ -203,7 +253,6 @@ function initNavbar() {
     });
   }
 
-  // Marca link ativo
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   $$('.nav-links a, .nav-mobile a').forEach(a => {
     const href = a.getAttribute('href');
@@ -212,7 +261,6 @@ function initNavbar() {
     }
   });
 
-  // Atualiza navbar com usuário logado
   updateNavUser();
 }
 
@@ -313,7 +361,6 @@ function initHome() {
     grid.appendChild(criarCardEquipamento(eq, i * 80));
   });
 
-  // Número animado
   animateNumbers();
 }
 
@@ -341,7 +388,6 @@ function initEquipamentos() {
   const grid = $('#equip-grid');
   if (!grid) return;
 
-  // Filtros
   $$('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       $$('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -351,7 +397,6 @@ function initEquipamentos() {
     });
   });
 
-  // Busca
   const searchInput = $('#equip-search');
   if (searchInput) {
     searchInput.addEventListener('input', e => {
@@ -485,6 +530,35 @@ function initDetalhes() {
             color:var(--gray-400);
           ">#${t}</span>`).join('')}
         </div>
+
+        ${eq.contato ? `
+        <div class="contato-vendedor">
+          <h3 class="contato-titulo">📋 Contato do Vendedor</h3>
+          <div class="contato-grid">
+            <a class="contato-item" href="https://wa.me/55${eq.contato.whatsapp}" target="_blank">
+              <span class="contato-icon">💬</span>
+              <div>
+                <p class="contato-label">WhatsApp</p>
+                <p class="contato-value">${formatarTelefone(eq.contato.whatsapp)}</p>
+              </div>
+            </a>
+            <a class="contato-item" href="mailto:${eq.contato.email}">
+              <span class="contato-icon">✉️</span>
+              <div>
+                <p class="contato-label">E-mail</p>
+                <p class="contato-value">${eq.contato.email}</p>
+              </div>
+            </a>
+            <div class="contato-item contato-endereco">
+              <span class="contato-icon">📍</span>
+              <div>
+                <p class="contato-label">Endereço</p>
+                <p class="contato-value">${eq.contato.endereco}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        ` : ''}
       </div>
     </div>
   `;
@@ -548,7 +622,6 @@ function openModalAluguel(id) {
     if (e.target === overlay) overlay.remove();
   });
 
-  // Calcular total ao mudar datas
   ['modal-inicio', 'modal-fim'].forEach(id => {
     document.getElementById(id)?.addEventListener('change', () => calcularTotal(eq.preco));
   });
@@ -612,7 +685,6 @@ function confirmarAluguel(id) {
   alugueis.push(aluguel);
   setAlugueis(alugueis);
 
-  // Fechar modal
   document.querySelector('.modal-overlay')?.remove();
 
   showToast(`✅ Aluguel solicitado com sucesso! Total: ${formatBRL(total)}`, 'success', 4000);
@@ -626,13 +698,11 @@ function initLogin() {
   const form = $('#login-form');
   if (!form) return;
 
-  // Redireciona se já logado
   if (getUsuarioAtual()) {
     window.location.href = 'painel.html';
     return;
   }
 
-  // Tabs
   $$('.form-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       $$('.form-tab').forEach(t => t.classList.remove('active'));
@@ -651,7 +721,6 @@ function fazerLogin() {
   const senha = $('#login-senha');
   const alertEl = $('#login-alert');
 
-  // Limpa erros
   [email, senha].forEach(el => el.classList.remove('error'));
   alertEl.classList.remove('show', 'alert-error', 'alert-success');
 
@@ -702,7 +771,6 @@ function initCadastro() {
     return;
   }
 
-  // Tabs
   $$('.form-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       $$('.form-tab').forEach(t => t.classList.remove('active'));
@@ -734,7 +802,6 @@ function fazerCadastro() {
   const confirmSenha = $('#cad-confirma-senha');
   const alertEl = $('#cad-alert');
 
-  // Limpa
   $$('#cadastro-form .form-input').forEach(el => el.classList.remove('error'));
   $$('#cadastro-form .form-error').forEach(el => el.classList.remove('show'));
   alertEl.classList.remove('show');
@@ -826,7 +893,6 @@ function initPainel() {
     return;
   }
 
-  // Preenche dados
   const nome = user.nome || user.nomeEmpresa || 'Usuário';
   const inicial = nome.charAt(0).toUpperCase();
 
@@ -845,17 +911,14 @@ function initPainel() {
     setEl('#dash-cnpj-info', user.cnpj || '—');
   }
 
-  // Alugueis do usuário
   const meusAlugueis = getAlugueis().filter(a => a.userEmail === user.email);
 
-  // Stats
   setEl('#dash-total-alugueis', meusAlugueis.length);
   const totalGasto = meusAlugueis.reduce((acc, a) => acc + a.total, 0);
   setEl('#dash-total-gasto', formatBRL(totalGasto));
   const ativos = meusAlugueis.filter(a => a.status === 'ativo').length;
   setEl('#dash-ativos', ativos);
 
-  // Renderiza lista
   const listaEl = $('#dash-alugueis-lista');
   if (listaEl) {
     if (meusAlugueis.length === 0) {
@@ -886,7 +949,6 @@ function initPainel() {
     }
   }
 
-  // Navegação do painel
   $$('.dash-nav-item').forEach(item => {
     item.addEventListener('click', () => {
       $$('.dash-nav-item').forEach(i => i.classList.remove('active'));
@@ -945,85 +1007,89 @@ document.addEventListener('DOMContentLoaded', () => {
   else if (page === 'cadastro.html') initCadastro();
   else if (page === 'painel.html') initPainel();
 
-  // Animação de entrada de página
   document.body.classList.add('page-enter');
 });
-// seu código atual...
 
-// 🔹 CARREGAR DADOS NO PERFIL
-if (window.location.pathname.includes("perfil.html")) {
-  const user = JSON.parse(localStorage.getItem("user"));
+/* ═══════════════════════════════════════════
+   PERFIL — painel.html
+   ═══════════════════════════════════════════ */
 
-  if (!user) {
-    alert("Você precisa estar logado!");
-    window.location.href = "login.html";
-  }
+const STORAGE_KEY = 'meuPerfil';
 
-  document.getElementById("nome").value = user.nome || "";
-  document.getElementById("email").value = user.email || "";
-}
-
-// 🔹 SALVAR PERFIL
-const form = document.getElementById("perfilForm");
-
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    // aqui você coloca lógica de submit
-    console.log("Form enviado");
-  });
-}
-
-// 🔹 CARREGAR DADOS DO PERFIL (fora do submit)
-const nomeInput = document.getElementById("nome");
-const emailInput = document.getElementById("email");
-const senhaInput = document.getElementById("senha");
-const perfilForm = document.getElementById("perfilForm");
-
-if (nomeInput && emailInput) {
+function loadState() {
   const user = getUsuarioAtual();
+  const saved = storageGet(STORAGE_KEY);
 
-  if (!user) {
-    showToast('Faça login primeiro.', 'error');
-    setTimeout(() => window.location.href = 'login.html', 800);
-  } else {
-    nomeInput.value = user.nome || user.nomeEmpresa || "";
-    emailInput.value = user.email || "";
-  }
+  return {
+    nome:      saved?.nome      || user?.nome || user?.nomeEmpresa || '',
+    sobrenome: saved?.sobrenome || '',
+    email:     user?.email      || '',
+    telefone:  saved?.telefone  || '',
+    cidade:    saved?.cidade    || '',
+    estado:    saved?.estado    || ''
+  };
 }
 
-// 🔹 SALVAR PERFIL
-if (perfilForm) {
-  perfilForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+function savePerfilState(s) {
+  storageSet(STORAGE_KEY, s);
+}
 
-    const user = getUsuarioAtual();
-    if (!user) return;
+function renderView(s) {
+  const full = (s.nome + ' ' + s.sobrenome).trim();
+  const loc  = [s.cidade, s.estado].filter(Boolean).join(' / ') || '—';
 
-    const nome = nomeInput.value;
-    const email = emailInput.value;
-    const senha = senhaInput.value;
+  document.getElementById('vNome').textContent     = full;
+  document.getElementById('vEmail').textContent    = s.email;
+  document.getElementById('vTelefone').textContent = s.telefone || '—';
+  document.getElementById('vCidade').textContent   = loc;
 
-    // Atualiza usuário atual
-    user.nome = nome;
-    user.email = email;
+  const sideName  = document.getElementById('sideName');
+  const sideEmail = document.getElementById('sideEmail');
+  if (sideName)  sideName.textContent  = full;
+  if (sideEmail) sideEmail.textContent = s.email;
+}
 
-    if (senha && senha.trim() !== "") {
-      user.senha = senha;
-    }
+function openEdit(s) {
+  document.getElementById('fNome').value      = s.nome;
+  document.getElementById('fSobrenome').value = s.sobrenome;
+  document.getElementById('fEmail').value     = s.email;
+  document.getElementById('fTelefone').value  = s.telefone;
+  document.getElementById('fCidade').value    = s.cidade;
+  document.getElementById('fEstado').value    = s.estado;
 
-    // Atualiza lista de usuários
-    let usuarios = getUsuarios();
-    usuarios = usuarios.map(u => u.id === user.id ? user : u);
+  document.getElementById('viewMode').style.display = 'none';
+  document.getElementById('editForm').classList.add('show');
+  document.getElementById('btnEdit').style.display  = 'none';
+}
 
-    setUsuarios(usuarios);
-    setUsuarioAtual(user);
+function closeEdit() {
+  document.getElementById('viewMode').style.display = 'grid';
+  document.getElementById('editForm').classList.remove('show');
+  document.getElementById('btnEdit').style.display  = '';
+}
 
-    showToast('Perfil atualizado com sucesso!', 'success');
+function showPerfilToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
 
-    setTimeout(() => {
-      window.location.href = "painel.html";
-    }, 800);
+if (document.getElementById('btnEdit')) {
+  let perfilState = loadState();
+  renderView(perfilState);
+
+  document.getElementById('btnEdit').addEventListener('click', () => openEdit(perfilState));
+  document.getElementById('btnCancel').addEventListener('click', closeEdit);
+  document.getElementById('btnSave').addEventListener('click', () => {
+    perfilState.nome      = document.getElementById('fNome').value.trim() || perfilState.nome;
+    perfilState.sobrenome = document.getElementById('fSobrenome').value.trim();
+    perfilState.telefone  = document.getElementById('fTelefone').value.trim();
+    perfilState.cidade    = document.getElementById('fCidade').value.trim();
+    perfilState.estado    = document.getElementById('fEstado').value;
+
+    savePerfilState(perfilState);
+    renderView(perfilState);
+    closeEdit();
+    showPerfilToast();
   });
 }
